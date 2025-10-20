@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: rguske-gitops-vms
 resources:
   - virtualmachine/linux-rhel9-pod-network.yaml
-  - virtualmachine/linux-ssh.yaml
+  - service/linux-ssh.yaml
