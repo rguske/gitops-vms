@@ -2,7 +2,6 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   name: rhel-9-gitops-vm
-  namespace: rguske-gitops-vms
   labels:
     vm.openshift.io/folder: linux
     app: linux-ssh
