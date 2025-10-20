@@ -1,0 +1,67 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: rhel-9-gitops-vm-pod-net
+  labels:
+    vm.openshift.io/folder: linux
+    app: linux-ssh
+spec:
+  dataVolumeTemplates:
+    - metadata:
+        name: rhel-9-red-tapir-92-volume
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: rhel9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 60Gi
+          storageClassName: synology-iscsi-storage
+  instancetype:
+    name: u1.2xmedium
+  preference:
+    name: rhel.9
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        network.kubevirt.io/headlessService: headless
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: false
+          disks:
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - model: virtio
+              name: default
+              masquerade: {}
+      networks:
+        - name: default
+          pod: {}
+      subdomain: headless
+      volumes:
+        - dataVolume:
+            name: rhel-9-red-tapir-92-volume
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+              password: r3dh4t1!
+              user: rguske
+              users:
+                - name: rguske
+                  gecos: R. Guske
+                  groups: wheel
+                  sudo: ALL=(ALL) NOPASSWD:ALL
+                  shell: /bin/bash
+                  plain_text_passwd: 'redhat'
+                  lock_passwd: false
+                  ssh_pwauth: true
+          name: cloudinitdisk

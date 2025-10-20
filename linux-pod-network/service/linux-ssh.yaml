@@ -18,6 +18,6 @@ spec:
     protocol: TCP
     targetPort: 22
   selector:
-    vm.kubevirt.io/name: rhel-9-gitops-vm
+    vm.kubevirt.io/name: rhel-9-gitops-vm-pod-net
   sessionAffinity: None
   type: LoadBalancer
