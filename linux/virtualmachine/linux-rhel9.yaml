@@ -59,10 +59,3 @@ spec:
               user: rguske
               runcmd: []
           name: cloudinitdisk
-      accessCredentials:
-        - sshPublicKey:
-            propagationMethod:
-              noCloud: {}
-            source:
-              secret:
-                secretName: ssh-key-rguske-gray-cuckoo-20-aquamarine-boa-62
