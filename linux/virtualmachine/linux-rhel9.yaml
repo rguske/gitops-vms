@@ -1,0 +1,69 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: rhel-9-gitops-vm
+  namespace: rguske-gitops-vms
+  labels:
+    vm.openshift.io/folder: linux
+    app: linux-ssh
+spec:
+  dataVolumeTemplates:
+    - metadata:
+        name: rhel-9-olive-tapir-92-volume
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: rhel9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 60Gi
+          storageClassName: synology-iscsi-storage
+  instancetype:
+    name: u1.2xmedium
+  preference:
+    name: rhel.9
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        network.kubevirt.io/headlessService: headless
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: false
+          disks:
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - model: virtio
+              name: net-vlan50
+              state: up
+              bridge: {}
+      networks:
+        - name: net-vlan50
+          multus:
+            networkName: default/bridge-network-vlan50
+      subdomain: headless
+      volumes:
+        - dataVolume:
+            name: rhel-9-olive-tapir-92-volume
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+              password: r3dh4t1!
+              user: rguske
+              runcmd: []
+          name: cloudinitdisk
+      accessCredentials:
+        - sshPublicKey:
+            propagationMethod:
+              noCloud: {}
+            source:
+              secret:
+                secretName: ssh-key-rguske-gray-cuckoo-20-aquamarine-boa-62
