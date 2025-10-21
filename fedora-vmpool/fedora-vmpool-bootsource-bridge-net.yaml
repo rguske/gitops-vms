@@ -23,7 +23,7 @@ spec:
           storage:
             resources:
               requests:
-                storage: 25Gi
+                storage: 30Gi
             storageClassName: synology-iscsi-storage
       runStrategy: Always
       template:
