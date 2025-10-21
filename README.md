@@ -1,4 +1,6 @@
-Example on how to deploy VMs in OpenShift Virtualization using a GitOps approach.
+# OpenShift Virtualization meets GitOps
+
+This repo provides examples on how to deploy VMs in OpenShift Virtualization using a GitOps approach.
 
 The following YAML defines the Argo CD Application:
 
@@ -23,3 +25,5 @@ spec:
     syncOptions:
       - CreateNamespace=true
 ```
+
+![example-image](static/image1.png)
