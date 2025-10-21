@@ -60,20 +60,12 @@ spec:
           - cloudInitNoCloud:
               userData: |-
                 #cloud-config
-                user: fedora
-                password: redhat
-                chpasswd: { expire: False }
                 users:
-                  - name: rguske
-                    gecos: R. Guske
-                    groups: wheel
-                    sudo: ALL=(ALL) NOPASSWD:ALL
-                    shell: /bin/bash
-                    ssh_authorized_keys:
-                      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGf2ipOy2h3lJHbwP3qm4yICHvEFvYjlZGHWsEEUHCl jarvishomelab@gmail.com
-                ssh_pwauth: false
-                write_files:
-                  - content: |
-                      This is a test file created by cloud-init.
-                  path: /root/test.txt
+                - name: rguske
+                  gecos: R. Guske
+                  groups: wheel
+                  sudo: ALL=(ALL) NOPASSWD:ALL
+                  shell: /bin/bash
+                  ssh_authorized_keys:
+                    - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGf2ipOy2h3lJHbwP3qm4yICHvEFvYjlZGHWsEEUHCl jarvishomelab@gmail.com
             name: cloudinitdisk
