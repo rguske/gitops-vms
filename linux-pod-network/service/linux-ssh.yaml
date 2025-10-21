@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: linux-ssh
-  name: rhel9-rguske-gitops-vm-ssh
+  name: rhel9-gitops-vm1-pod-net-svc
 spec:
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Cluster
@@ -18,6 +18,6 @@ spec:
     protocol: TCP
     targetPort: 22
   selector:
-    vm.kubevirt.io/name: rhel-9-gitops-vm-pod-net
+    vm.kubevirt.io/name: rhel9-gitops-vm1-pod-net
   sessionAffinity: None
   type: LoadBalancer
