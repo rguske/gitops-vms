@@ -60,8 +60,8 @@ spec:
           - cloudInitNoCloud:
               userData: |-
                 #cloud-config
-                user: rguske
-                password: r3dh4t1!
+                user: fedora
+                password: redhat
                 chpasswd: { expire: False }
                 runcmd:
                   - 'sed -i "s/^PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config'
