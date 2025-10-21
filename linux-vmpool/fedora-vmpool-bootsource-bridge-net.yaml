@@ -1,0 +1,93 @@
+apiVersion: pool.kubevirt.io/v1alpha1
+kind: VirtualMachinePool
+metadata:
+  name: dev-fedora-vms
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      kubevirt.io/vmpool: dev-fedora-vms
+  virtualMachineTemplate:
+    metadata:
+      labels:
+        kubevirt.io/vmpool: dev-fedora-vms
+    spec:
+      dataVolumeTemplates:
+      - metadata:
+          name: fedora-dev-volume
+        spec:
+          sourceRef:
+            kind: DataSource
+            name: fedora
+            namespace: openshift-virtualization-os-images
+          storage:
+            resources:
+              requests:
+                storage: 25Gi
+            storageClassName: synology-iscsi-storage
+      runStrategy: Always
+      template:
+        metadata:
+          labels:
+            kubevirt.io/vmpool: dev-fedora-vms
+        spec:
+          domain:
+            cpu:
+              cores: 1
+            devices:
+              disks:
+              - disk:
+                  bus: virtio
+                name: rootdisk
+              - disk:
+                  bus: virtio
+                name: cloudinitdisk
+              interfaces:
+              - bridge: {}
+                model: virtio
+                name: net-vlan50
+              rng: {}
+            memory:
+              guest: 1024M
+          networks:
+          - multus:
+              networkName: default/bridge-network-vlan50
+            name: net-vlan50
+          volumes:
+          - dataVolume:
+              name: fedora-rguske-dev-volume
+            name: rootdisk
+          - cloudInitNoCloud:
+              userData: |-
+                #cloud-config
+                user: rguske
+                password: r3dh4t1!
+                chpasswd: { expire: False }
+                # Enable SSH password authentication
+                ssh_pwauth: true
+                # Set a password for the default user (often 'fedora' or 'cloud-user')
+                # and a new user if desired.
+                chpasswd:
+                  list: |
+                    fedora:your_desired_password
+                  expire: False
+                # Optional: Ensure the default 'fedora' user is configured
+                users:
+                  - name: fedora
+                    # Remove any default SSH keys that cloud-init might try to install
+                    # (Leaving this blank or removing the key will force password auth)
+                    ssh_authorized_keys: []
+                # Optional: Add a new user with a password
+                # users:
+                #   - name: newuser
+                #     password: newuser_password
+                #     shell: /bin/bash
+                #     sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                #     ssh_pwauth: true
+                #     ssh_authorized_keys: []
+                # Optional: Run a command to ensure the sshd_config file itself is not
+                # overriding the password authentication setting to 'no'.
+                runcmd:
+                  - 'sed -i "s/^PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config'
+                  - 'systemctl restart sshd'
+            name: cloudinitdisk
