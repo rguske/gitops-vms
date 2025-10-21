@@ -3,7 +3,7 @@ kind: VirtualMachinePool
 metadata:
   name: dev-fedora-vms
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       kubevirt.io/vmpool: dev-fedora-vms
@@ -55,7 +55,7 @@ spec:
             name: net-vlan50
           volumes:
           - dataVolume:
-              name: fedora-rguske-dev-volume
+              name: fedora-dev-volume
             name: rootdisk
           - cloudInitNoCloud:
               userData: |-
