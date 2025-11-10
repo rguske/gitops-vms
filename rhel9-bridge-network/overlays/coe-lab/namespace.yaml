@@ -1,8 +1,0 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  annotations:
-    openshift.io/description: "Namespace for VM GitOps Demos"
-    openshift.io/display-name: "rguske-rhel9-bridge-gitops"
-    openshift.io/requester: rguske@redhat.com
-  name: rguske-rhel9-bridge-gitops
