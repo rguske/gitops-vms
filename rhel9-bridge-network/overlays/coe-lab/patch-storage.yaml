@@ -10,5 +10,8 @@ spec:
         name: rhel-9-olive-tapir-92-volume # Ensure this name matches the volume template to be patched
       spec:
         storage:
+          resources:
+            requests:
+              storage: 60Gi
           # --- TARGET 1: New Storage Class Name ---
           storageClassName: "coe-netapp-san" # <-- REPLACE with your actual StorageClass name

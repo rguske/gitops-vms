@@ -14,11 +14,6 @@ spec:
           kind: DataSource
           name: rhel9
           namespace: openshift-virtualization-os-images
-        storage:
-          resources:
-            requests:
-              storage: 60Gi
-          storageClassName: ''
   instancetype:
     name: u1.2xmedium
   preference:
