@@ -18,4 +18,4 @@ spec:
       - name: coe-bridge # Ensure this name matches the network interface to be patched
         multus:
           # --- TARGET 2: New Network Attachment Definition Name ---
-          networkName: "rguske-rhel9-bridge-gitops/coe-bridge" # <-- REPLACE with your actual `namespace/networkName`
+          networkName: "coe-bridge" # <-- REPLACE with your actual `namespace/networkName`
