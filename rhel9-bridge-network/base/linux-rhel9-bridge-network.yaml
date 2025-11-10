@@ -1,7 +1,7 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: rhel9-gitops-vm1
+  name: rguske-rhel9-bridge-gitops-vm1
   labels:
     vm.openshift.io/folder: linux
     app: linux-ssh
@@ -18,7 +18,7 @@ spec:
           resources:
             requests:
               storage: 60Gi
-          storageClassName: synology-iscsi-storage
+          storageClassName: ''
   instancetype:
     name: u1.2xmedium
   preference:
