@@ -1,0 +1,14 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  # The name must match the VirtualMachine you are patching
+  name: rguske-rhel9-bridge-gitops-vm1
+spec:
+  # 1. Update storageClassName within the first DataVolumeTemplate
+  dataVolumeTemplates:
+    - metadata:
+        name: rhel-9-olive-tapir-92-volume # Ensure this name matches the volume template to be patched
+      spec:
+        storage:
+          # --- TARGET 1: New Storage Class Name ---
+          storageClassName: "coe-netapp-san" # <-- REPLACE with your actual StorageClass name

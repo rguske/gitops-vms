@@ -4,23 +4,14 @@ metadata:
   # The name must match the VirtualMachine you are patching
   name: rguske-rhel9-bridge-gitops-vm1
 spec:
-  # 1. Update storageClassName within the first DataVolumeTemplate
-  dataVolumeTemplates:
-    - metadata:
-        name: rhel-9-olive-tapir-92-volume # Ensure this name matches the volume template to be patched
-      spec:
-        storage:
-          # --- TARGET 1: New Storage Class Name ---
-          storageClassName: "coe-netapp-san" # <-- REPLACE with your actual StorageClass name
-
-  # 2. Update networkName within the VM template spec
+  # --- TARGET 1: Network Interface and Network Definition Names ---
   template:
     spec:
       domain:
         devices:
           interfaces:
             - model: virtio
-              name: net-vlan50 # Ensure this name matches the network interface to be patched
+              name: coe-bridge # Ensure this name matches the network interface to be patched
               state: up
               bridge: {}
       networks:

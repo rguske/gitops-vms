@@ -36,15 +36,9 @@ spec:
             - disk:
                 bus: virtio
               name: cloudinitdisk
-          interfaces:
-            - model: virtio
-              name: net-vlan50
-              state: up
-              bridge: {}
       networks:
-        - name: net-vlan50
-          multus:
-            networkName: default/bridge-network-vlan50
+        - name: default
+          pod: {}
       subdomain: headless
       volumes:
         - dataVolume:
