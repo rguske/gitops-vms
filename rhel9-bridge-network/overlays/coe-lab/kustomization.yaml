@@ -4,6 +4,7 @@ kind: Kustomization
 # namePrefix: coe-
 
 resources:
+  - namespace.yaml
   - ../../base
 
 patchesStrategicMerge:
