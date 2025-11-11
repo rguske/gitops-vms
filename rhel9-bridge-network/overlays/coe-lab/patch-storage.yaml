@@ -7,7 +7,7 @@ spec:
   # 1. Update storageClassName within the first DataVolumeTemplate
   dataVolumeTemplates:
     - metadata:
-        name: rhel-9-olive-tapir-92-volume # Ensure this name matches the volume template to be patched
+        name: rhel-9-olive-tapir-92-volume
       spec:
         sourceRef:
           kind: DataSource
