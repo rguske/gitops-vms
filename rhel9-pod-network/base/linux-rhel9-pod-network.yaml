@@ -18,7 +18,7 @@ spec:
           resources:
             requests:
               storage: 60Gi
-          storageClassName: synology-iscsi-storage
+          storageClassName: ''
   instancetype:
     name: u1.2xmedium
   preference:
