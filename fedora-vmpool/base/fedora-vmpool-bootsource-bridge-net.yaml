@@ -3,7 +3,7 @@ kind: VirtualMachinePool
 metadata:
   name: dev-fedora-vms
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       kubevirt.io/vmpool: dev-fedora-vms
