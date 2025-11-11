@@ -2,7 +2,32 @@
 
 This repo provides examples on how to deploy VMs in OpenShift Virtualization using a GitOps approach.
 
-The following YAML defines the Argo CD Application:
+The repo is structured as follows:
+
+```code
+.
+├── fedora-vmpool
+│   ├── base
+│   └── overlays
+│       ├── coe-lab
+│       └── jarvislab
+├── rhel9-bridge-network
+│   ├── base
+│   └── overlays
+│       ├── coe-lab
+│       └── jarvislab
+├── rhel9-pod-network
+│   ├── base
+│   └── overlays
+│       ├── coe-lab
+│       └── jarvislab
+├── static
+└── windows
+```
+
+The `base` directories containing the main `VirtualMachine` or `VirtualMachinePool` configurations. The `overlays` directories are for specific adjustments regarding either networking, storage or both.
+
+The following YAML defines a Argo CD Application:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
