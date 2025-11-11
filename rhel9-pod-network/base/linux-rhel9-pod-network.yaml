@@ -8,7 +8,7 @@ metadata:
 spec:
   dataVolumeTemplates:
     - metadata:
-        name: rhel-9-red-tapir-92-volume
+        name: rhel-9-foo-bar-92-volume
       spec:
         sourceRef:
           kind: DataSource
@@ -46,7 +46,7 @@ spec:
       subdomain: headless
       volumes:
         - dataVolume:
-            name: rhel-9-red-tapir-92-volume
+            name: rhel-9-foo-bar-92-volume
           name: rootdisk
         - cloudInitNoCloud:
             userData: |
