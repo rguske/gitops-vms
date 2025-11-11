@@ -5,6 +5,7 @@ metadata:
   labels:
     kubernetes.io/metadata.name: rguske-rhel9-bridge-gitops
   annotations:
+    argocd.argoproj.io/sync-wave: "-1"
     openshift.io/description: 'Project for RHEL9 Bridge Network VM managed via GitOps'
     openshift.io/display-name: 'rguske-rhel9-bridge-gitops'
     openshift.io/requester: rguske@redhat.com
