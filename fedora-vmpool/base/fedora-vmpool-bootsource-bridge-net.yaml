@@ -24,7 +24,7 @@ spec:
             resources:
               requests:
                 storage: 30Gi
-            storageClassName: synology-iscsi-storage
+            storageClassName: ''
       runStrategy: Always
       template:
         metadata:
@@ -42,17 +42,9 @@ spec:
               - disk:
                   bus: virtio
                 name: cloudinitdisk
-              interfaces:
-              - bridge: {}
-                model: virtio
-                name: net-vlan50
               rng: {}
             memory:
               guest: 1024M
-          networks:
-          - multus:
-              networkName: default/bridge-network-vlan50
-            name: net-vlan50
           volumes:
           - dataVolume:
               name: fedora-dev-volume

@@ -1,0 +1,26 @@
+apiVersion: pool.kubevirt.io/v1alpha1
+kind: VirtualMachinePool
+metadata:
+  # The name must match the VirtualMachine you are patching
+  name: dev-fedora-vms
+spec:
+  selector:
+    matchLabels:
+      kubevirt.io/vmpool: dev-fedora-vms
+  virtualMachineTemplate:
+  # 1. Update storageClassName within the first DataVolumeTemplate
+    spec:
+      dataVolumeTemplates:
+      - metadata:
+          name: fedora-dev-volume
+        spec:
+          sourceRef:
+            kind: DataSource
+            name: fedora
+            namespace: openshift-virtualization-os-images
+          storage:
+            resources:
+              requests:
+                storage: 30Gi
+          # --- TARGET 1: New Storage Class Name ---
+            storageClassName: 'coe-netapp-san' # <-- REPLACE with your actual StorageClass name

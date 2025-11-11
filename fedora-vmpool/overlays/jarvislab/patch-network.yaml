@@ -1,0 +1,21 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  # The name must match the VirtualMachine you are patching
+  name: rguske-rhel9-bridge-gitops-vm1
+spec:
+  # --- TARGET 1: Network Interface and Network Definition Names ---
+  template:
+    spec:
+      domain:
+        devices:
+          interfaces:
+            - model: virtio
+              name: coe-bridge # Ensure this name matches the network interface to be patched
+              state: up
+              bridge: {}
+      networks:
+      - name: coe-bridge # Ensure this name matches the network interface to be patched
+        multus:
+          # --- TARGET 2: New Network Attachment Definition Name ---
+          networkName: "coe-bridge" # <-- REPLACE with your actual `namespace/networkName`
