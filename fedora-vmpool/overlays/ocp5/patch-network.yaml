@@ -1,0 +1,26 @@
+apiVersion: pool.kubevirt.io/v1alpha1
+kind: VirtualMachinePool
+metadata:
+  # The name must match the VirtualMachine you are patching
+  name: dev-fedora-vms
+spec:
+  selector:
+    matchLabels:
+      kubevirt.io/vmpool: dev-fedora-vms
+  # --- TARGET 1: Network Interface and Network Definition Names ---
+  virtualMachineTemplate:
+    spec:
+      template:
+        spec:
+          domain:
+            devices:
+              interfaces:
+              - model: virtio
+                name: coe-bridge-32 # Ensure this name matches the network interface to be patched
+                state: up
+                bridge: {}
+          networks:
+          - name: coe-bridge-32 # Ensure this name matches the network interface to be patched
+            multus:
+              # --- TARGET 2: New Network Attachment Definition Name ---
+              networkName: "coe-bridge-32" # <-- REPLACE with your actual `namespace/networkName`
