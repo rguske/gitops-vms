@@ -2,7 +2,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   # The name must match the VirtualMachine you are patching
-  name: dev-fedora-vms
+  name: fedora-dev-vms
 spec:
   # --- TARGET 1: Network Interface and Network Definition Names ---
   template:
