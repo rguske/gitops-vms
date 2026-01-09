@@ -2,20 +2,20 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   # The name must match the VirtualMachine you are patching
-  name: rguske-rhel9-bridge-gitops-vm1
+  name: dev-fedora-vms
 spec:
   # 1. Update storageClassName within the first DataVolumeTemplate
   dataVolumeTemplates:
     - metadata:
-        name: rhel-9-olive-tapir-92-volume
+        name: fedora-olive-tapir-92-volume
       spec:
         sourceRef:
           kind: DataSource
-          name: rhel9
+          name: fedora
           namespace: openshift-virtualization-os-images
         storage:
           resources:
             requests:
-              storage: 60Gi
+              storage: 30Gi
           # --- TARGET 1: New Storage Class Name ---
-          storageClassName: "coe-netapp-san" # <-- REPLACE with your actual StorageClass name
+          storageClassName: "synology-iscsi-storage" # <-- REPLACE with your actual StorageClass name
