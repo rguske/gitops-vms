@@ -2,12 +2,12 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   # The name must match the VirtualMachine you are patching
-  name: fedora-dev-vms
+  name: dev-fedora-vms
 spec:
   # 1. Update storageClassName within the first DataVolumeTemplate
   dataVolumeTemplates:
     - metadata:
-        name: fedora-bana-tapir-92-volume
+        name: fedora-banana-tapir-92-volume
       spec:
         sourceRef:
           kind: DataSource
