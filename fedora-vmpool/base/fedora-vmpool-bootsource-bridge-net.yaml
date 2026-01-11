@@ -2,7 +2,6 @@ apiVersion: pool.kubevirt.io/v1alpha1
 kind: VirtualMachinePool
 metadata:
   name: dev-fedora-vms
-  namespace: "{{namespace}}"
 spec:
   replicas: 1
   selector:
