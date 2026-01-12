@@ -11,7 +11,7 @@ spec:
         devices:
           interfaces:
             - model: virtio
-              name: default/bridge-network-vlan50 # Ensure this name matches the network interface to be patched
+              name: bridge-network-vlan50 # Ensure this name matches the network interface to be patched
               state: up
               bridge: {}
       networks:
