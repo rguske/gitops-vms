@@ -2,7 +2,7 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   # The name must match the VirtualMachine you are patching
-  name: rguske-rhel9-bridge-gitops-vm1
+  name: rguske-rhel9-bridge-gitops
 spec:
   # 1. Update storageClassName within the first DataVolumeTemplate
   dataVolumeTemplates:
