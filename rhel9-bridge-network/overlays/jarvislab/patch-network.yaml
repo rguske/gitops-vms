@@ -15,7 +15,7 @@ spec:
               state: up
               bridge: {}
       networks:
-      - name: bridge-network-vlan50 # Ensure this name matches the network interface to be patched
+      - name: default/bridge-network-vlan50 # Ensure this name matches the network interface to be patched
         multus:
           # --- TARGET 2: New Network Attachment Definition Name ---
-          networkName: "default/bridge-network-vlan50" # <-- REPLACE with your actual `namespace/networkName`
+          networkName: "bridge-network-vlan50" # <-- REPLACE with your actual `namespace/networkName`
