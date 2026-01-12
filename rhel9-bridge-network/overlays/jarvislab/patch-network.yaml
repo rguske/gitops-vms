@@ -18,4 +18,4 @@ spec:
       - name: bridge-network-vlan50 # Ensure this name matches the network interface to be patched
         multus:
           # --- TARGET 2: New Network Attachment Definition Name ---
-          networkName: "bridge-network-vlan50" # <-- REPLACE with your actual `namespace/networkName`
+          networkName: "default/bridge-network-vlan50" # <-- REPLACE with your actual `namespace/networkName`
