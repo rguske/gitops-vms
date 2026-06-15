@@ -11,11 +11,11 @@ spec:
         devices:
           interfaces:
             - model: virtio
-              name: bridge-network-vlan50 # Ensure this name matches the network interface to be patched
+              name: localnet-50 # Ensure this name matches the network interface to be patched
               state: up
               bridge: {}
       networks:
-      - name: bridge-network-vlan50 # Ensure this name matches the network interface to be patched
+      - name: localnet-50 # Ensure this name matches the network interface to be patched
         multus:
           # --- TARGET 2: New Network Attachment Definition Name ---
-          networkName: "default/bridge-network-vlan50" # <-- REPLACE with your actual `namespace/networkName`
+          networkName: "default/localnet-50" # <-- REPLACE with your actual `namespace/networkName`

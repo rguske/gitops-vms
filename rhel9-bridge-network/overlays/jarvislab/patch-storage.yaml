@@ -18,4 +18,4 @@ spec:
             requests:
               storage: 60Gi
           # --- TARGET 1: New Storage Class Name ---
-          storageClassName: "synology-iscsi-storage" # <-- REPLACE with your actual StorageClass name
+          storageClassName: "synology-iscsi-ext4-thin" # <-- REPLACE with your actual StorageClass name
